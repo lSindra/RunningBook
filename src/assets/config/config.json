@@ -1,0 +1,9 @@
+{
+    "logging": {
+    "console": true,
+    "appInsights": false
+    },
+    "apiServer": {
+    "metadata": "http://localhost:3002/api"
+    }
+}

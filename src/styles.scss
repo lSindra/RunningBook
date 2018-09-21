@@ -1,4 +1,18 @@
-header .title {
+header {
+    margin-bottom: 30px;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 100%;
+}
+header .cal {
+    margin: 20px;
+    height: -webkit-fill-available;
+}
+
+header .cal .title {
     text-align:center;
 }
 

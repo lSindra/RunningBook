@@ -11,7 +11,7 @@ Para instalar a aplicação é necessário rodar:
 
 ```shell
 git clone https://github.com/lSindra/RunningBook.git
-cd RunnigBook
+cd RunningBook
 npm start
 ```
 

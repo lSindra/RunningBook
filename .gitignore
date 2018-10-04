@@ -40,3 +40,6 @@ Thumbs.db
 
 # Assets and config
 /assets
+
+# Firebase
+/.firebase

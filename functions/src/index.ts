@@ -1,60 +1,75 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
-import * as encrypt from 'crypto-js/sha256';
+import * as _cors from 'cors';
+import * as encrypt from 'crypto-js';
+import * as bodyParser from 'body-parser';
 
 import { UserModel } from '../_models/user-model';
 import { UserData } from '../_data/user-data';
+import { functionsConfig } from './functions-config';
 
 // Config
 admin.initializeApp(functions.config().firebase);
 
 const app = express();
 const db = admin.firestore();
+const cors = _cors;
+const CorsOptions = {
+    origin: functionsConfig.whitelist,
+    optionsSuccessStatus: 200
+  }
 
-app.get('', (req, res) => {
-    let users = []
+app.use(cors(CorsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+db.settings({ timestampsInSnapshots: true });
+
+app.get('/', (req, res) => {
+    console.log("ALL users")
     db.collection('users').get().then(snapshot => {
-        snapshot.forEach(doc => {
-            const user = doc.data() as UserData;
-            users = users.concat(user);
-        });
-        res.send(users)
+        snapshot.docs.map(doc => res.send(doc.data()));
     }).catch(reason => {
         res.send(reason)
     })
 });
 
-app.get(':username', (req, res) => {
+app.get('/:username', (req, res) => {
     const username = req.params['username'];
 
+    console.log(`Get ${username}`);
+
     db.collection('users').where('username', '==', username).get().then(snapshot => {
-        res.send(`Total: ${snapshot[0].doc.data() as UserData}`);
-    });
+        snapshot.docs.map(doc => res.send(doc.data()));        
+    }).catch(reason => {
+        res.send(reason)
+    })
 });
 
 //Register user
-app.post('', (req, res) => {
-    const user = new UserModel;
+app.post('/', (req, res) => {
+    console.log("Registering");
 
-    user.username = req.body.username;
-    user.password = encrypt(req.body['password']);
-    user.name = req.body['name'];
-    user.birthday = req.body['birthday'];
-    user.city = req.body['city'];
-
-    db.collection('users').add({user}).then(() => {
+    db.collection('users').add({
+        username: req.body.username,
+        // password: encrypt.SHA256(req.body["password"]),
+        // name: req.body["name"],
+        // birthday: admin.firestore.Timestamp.fromDate(req.body["birthday"]),
+        // city: req.body["city"]
+    }).then(() => {
         res.status(201).send(req.body);
-    });    
+    }).catch(reason => {
+        res.send(reason)
+    })  
 });
 
 //Update user
-app.put(':username', (req, res) => {
+app.put('/:username', (req, res) => {
     //UPDATE MODULAR
 });
 
 //Delete user
-app.delete(':username', (req, res) => {
+app.delete('/:username', (req, res) => {
     //DONT DELETE, CHANGE STATUS
 });
 

@@ -1,4 +1,5 @@
 # RunningBook
+[![Build Status](https://travis-ci.org/lSindra/RunningBook.svg?branch=master)](https://travis-ci.org/lSindra/RunningBook)
 
 ## Dependências
 Para conseguir rodar a aplicação são necessários:

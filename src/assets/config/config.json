@@ -4,6 +4,6 @@
     "appInsights": false
     },
     "apiServer": {
-    "metadata": "http://localhost:3002/api"
+    "metadata": "https://us-central1-running-book.cloudfunctions.net/"
     }
 }

@@ -4,8 +4,11 @@
       Welcome to {{ title }}!
     </h1>
   </div>
-  <div>
-      <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+  <div *ngIf="!this.isLoggedIn()">
+      <a [routerLink]="['/login']" class="btn btn-link">Login</a>
+  </div>
+  <div *ngIf="this.isLoggedIn()">
+      <a (click)="signOut()" [routerLink]="['/login']" class="btn btn-link">Logout</a>
   </div>
 </header>
 

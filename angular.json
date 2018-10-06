@@ -24,12 +24,18 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-auth-firebaseui/assets/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
               "src/styles.scss"
           ],
           "scripts": [

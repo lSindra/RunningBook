@@ -2,11 +2,9 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as _cors from 'cors';
-import * as encrypt from 'crypto-js';
+import * as encrypt from 'bcryptjs';
 import * as bodyParser from 'body-parser';
 
-import { UserModel } from '../_models/user-model';
-import { UserData } from '../_data/user-data';
 import { functionsConfig } from './functions-config';
 
 // Config
@@ -48,15 +46,15 @@ app.get('/:username', (req, res) => {
 
 //Register user
 app.post('/', (req, res) => {
-    console.log("Registering");
-
-    db.collection('users').add({
+    var user = {
         username: req.body.username,
-        // password: encrypt.SHA256(req.body["password"]),
-        // name: req.body["name"],
-        // birthday: admin.firestore.Timestamp.fromDate(req.body["birthday"]),
-        // city: req.body["city"]
-    }).then(() => {
+        password: encrypt.hashSync(req.body.password, 10),
+        name: req.body.name,
+        city: req.body.city,
+        birthday: new Date(req.body.birthday)
+    };
+    
+    db.collection('users').doc(user.username).set(user).then(() => {
         res.status(201).send(req.body);
     }).catch(reason => {
         res.send(reason)

@@ -41,7 +41,6 @@ export class AuthService {
   }
 
   signOut() {
-    console.log("logout");
     this.afAuth.auth.signOut();
   }
 }

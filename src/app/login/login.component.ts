@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    successfulLogin() {
+    successfulLogin(event) {
         this.router.navigate([this.returnUrl]);        
     }
 

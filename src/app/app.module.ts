@@ -7,6 +7,22 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatIconModule,
+  MatInputModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule,
+  MatProgressBarModule,
+  MatCheckboxModule
+} from '@angular/material';
+import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
@@ -19,6 +35,7 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { AngularFireModule } from '@angular/fire';
 import { AuthGuard } from './core/auth.guard';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -29,13 +46,29 @@ export function initializeApp(appConfig: AppConfigService) {
   AppComponent,
   LoginComponent,
   HomeComponent,
-  NotFoundComponent
+  NotFoundComponent,
+  ProfilePageComponent
   ],
   imports: [
+    BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     CoreModule,
     BrowserAnimationsModule,
-    BrowserModule,
+    MatTabsModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatPasswordStrengthModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,

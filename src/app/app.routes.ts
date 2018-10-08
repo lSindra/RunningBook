@@ -4,9 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './core/auth.guard';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 export const ROUTES: Routes = [
   { path: '',         component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'profile',  component: ProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'login',    component: LoginComponent },
   { path: '**',       component: NotFoundComponent }
 ];

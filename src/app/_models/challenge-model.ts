@@ -4,6 +4,6 @@ export class ChallengeModel {
     description: string;
     level: number;
     reward: number;
-    participants: [];
+    participants: Array<string>;
     uid: string;
 }

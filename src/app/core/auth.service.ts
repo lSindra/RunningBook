@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable, of } from 'rxjs';
-import { switchMap, map, take, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +14,6 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
   ) {
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -42,5 +40,9 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut();
+  }
+
+  getCurrentUser() {
+    return this.afAuth.auth.currentUser;
   }
 }

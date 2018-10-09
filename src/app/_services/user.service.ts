@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { UserModel } from '../_models/user-model';
-import { UserData } from '../_data/user-data';
+import { RunningUserModel } from '../_models/user-model';
 
 import { AppConfigService } from '../config/app-config.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+    //'Authorization': 'secret-key'
+  })
+ };
+ 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) {}
   private apiServer = AppConfigService.settings.apiServer.metadata;
-
-  getAllUsers(): Observable<UserData[]> {
-    const url = this.apiServer + 'users/';
-    return this.http.get<UserModel[]>(url);
-  }
-
-  getUserByUserName(username: string): Observable<UserData> {
-    const url = this.apiServer + 'users/';
-    return this.http.get<UserData>(url + username);
-  }
-
-  registerUser(User: UserModel): Observable<UserModel> {
-    const url = this.apiServer + 'users/';
-    return this.http.post<UserModel>(url, User);
-  }
   
-  updateUser(User: UserModel): Observable<void> {
-    const url = this.apiServer + 'users/';
-    return this.http.put<void>(url + User.username, User);
+  getUserByUID(uid: string): Observable<RunningUserModel> {
+    const url = this.apiServer + 'userAPI/';
+    return this.http.get<RunningUserModel>(url + uid);
   }
 
-  deleteUser(name: string, password: string) {
-    const url = this.apiServer + 'users/';
-    return this.http.delete(url + name);
+  updateUser(user: RunningUserModel) {
+    const url = this.apiServer + 'userAPI/';
+    return this.http.post<RunningUserModel>(url, user, httpOptions)
+    .subscribe(
+      data => {
+          console.log("POST Request is successful ", data);
+      },
+      error => {
+          console.log("Error", error);
+      }
+  );
   }
 }

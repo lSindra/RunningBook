@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService } from './core/auth.service'
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,18 @@ import { AuthService } from './core/auth.service'
 })
 export class AppComponent {
   constructor(private auth: AuthService, private router: Router) {}
-
+  
   title = 'RunningBook';
-  user: Observable<firebase.User | null>;
- 
+  user: User;
+
+  isLoggedIn() {
+    this.user = this.auth.getCurrentUser();
+    return this.auth.isLoggedIn();
+  }
+
   signOut() {
     console.log("logout");
     this.auth.signOut();
-  }
-  isLoggedIn() {
-    return this.auth.isLoggedIn();
+    this.router.navigate(['/login']);
   }
 }

@@ -2,8 +2,6 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as _cors from 'cors';
-import * as encrypt from 'bcryptjs';
-import * as bodyParser from 'body-parser';
 
 import { functionsConfig } from './functions-config';
 
@@ -19,56 +17,31 @@ const CorsOptions = {
   }
 
 app.use(cors(CorsOptions));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.disable('etag');
 db.settings({ timestampsInSnapshots: true });
 
-app.get('/', (req, res) => {
-    console.log("ALL users")
-    db.collection('users').get().then(snapshot => {
-        snapshot.docs.map(doc => res.send(doc.data()));
-    }).catch(reason => {
-        res.send(reason)
-    })
-});
+const userCollection = db.collection('users');
 
-app.get('/:username', (req, res) => {
-    const username = req.params['username'];
+//Get user by UID
+app.get('/:uid', (req, res) => {
+    const uid = req.params['uid'];
 
-    console.log(`Get ${username}`);
-
-    db.collection('users').where('username', '==', username).get().then(snapshot => {
-        snapshot.docs.map(doc => res.send(doc.data()));        
-    }).catch(reason => {
-        res.send(reason)
-    })
-});
-
-//Register user
-app.post('/', (req, res) => {
-    var user = {
-        username: req.body.username,
-        password: encrypt.hashSync(req.body.password, 10),
-        name: req.body.name,
-        city: req.body.city,
-        birthday: new Date(req.body.birthday)
-    };
-    
-    db.collection('users').doc(user.username).set(user).then(() => {
-        res.status(201).send(req.body);
-    }).catch(reason => {
-        res.send(reason)
-    })  
+    userCollection.doc(uid).get().then(function(user) {
+        if (user.exists) {
+            res.send(user.data())
+        } else {
+            console.log("No such user!");
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+    });
 });
 
 //Update user
-app.put('/:username', (req, res) => {
-    //UPDATE MODULAR
+app.post('/', (req, res) => {
+    let user = req.body;
+    userCollection.doc(user.uid).set((user)).then(() => res.sendStatus(201));
 });
 
-//Delete user
-app.delete('/:username', (req, res) => {
-    //DONT DELETE, CHANGE STATUS
-});
-
-exports.users = functions.https.onRequest(app);
+exports.userAPI = functions.https.onRequest(app);

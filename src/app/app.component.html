@@ -5,10 +5,11 @@
     </h1>
   </div>
   <div *ngIf="!this.isLoggedIn()">
-      <a [routerLink]="['/login']" class="btn btn-link">Login</a>
+    <a [routerLink]="['/login']" class="btn btn-link">Login</a>
   </div>
   <div *ngIf="this.isLoggedIn()">
-      <a (click)="signOut()" [routerLink]="['/login']" class="btn btn-link">Logout</a>
+    <a [routerLink]="['/profile']" class="btn btn-link">{{user.displayName}}</a>
+    <a (click)="signOut()" [routerLink]="['/login']" class="btn btn-link">Logout</a>
   </div>
 </header>
 

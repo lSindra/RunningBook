@@ -20,5 +20,5 @@ npm start
 
 Rode `npm start` na pasta do servidor. Navegue até `http://localhost:4200/`. A aplicação vai recarregar automaticamente se mudanças forem feitas.
 
-## Servidor Backend
-O servidor backend se encontra em `https://github.com/lSindra/RunningBookServer`, é necessário ter ele rodando para ter acesso ao banco de dados.
+## Servidor para testes
+https://running-book.firebaseapp.com

@@ -1,4 +1,4 @@
-<div *ngIf="this.user as user; then authenticated else none">
+<div *ngIf="this.user as user; then authenticated">
 
 </div>
 
@@ -170,21 +170,10 @@
       </mat-form-field>
 
       <mat-card-actions fxLayout="column">
-        <button mat-button color="primary" (click)="auth.auth.signOut()">Sign out</button>
         <button mat-button color="warn" (click)="deleteAccount()">Delete account</button>
       </mat-card-actions>
 
     </ng-template>
-
   </mat-card>
 
-</ng-template>
-
-<ng-template #none>
-  <mat-card class="none-card" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card-content fxLayout="row" fxLayoutAlign="center center">
-      <mat-icon color="accent">warning</mat-icon>
-      <span>You are not logged in!</span>
-    </mat-card-content>
-  </mat-card>
 </ng-template>

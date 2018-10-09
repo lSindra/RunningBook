@@ -19,14 +19,15 @@ export class ChallengePageComponent implements OnInit {
               private snackBar: MatSnackBar,
               private challengeService: ChallengeService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.populateChallenges();
   }
 
   populateChallenges() {
-    this.challengeService.getChallenges().subscribe(
-      (challenges) => this.challenges = challenges
-      );
+    // Importa desafios do banco
+    // this.challengeService.getChallenges().subscribe(
+    //   (challenges) => this.challenges = (challenges)
+    //   );
   }
 
 }

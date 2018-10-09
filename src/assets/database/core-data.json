@@ -1,0 +1,40 @@
+{
+    "challenges": {
+        "1": {
+            "uid": "1",
+            "title": "Run 10km",
+            "description": "Run 10km in a week",
+            "createdAt": 1539043200,
+            "reward": 200,
+            "level": 1,
+            "participants": []
+        },
+        "2": {
+            "uid": "2",
+            "title": "Run 20km",
+            "description": "Run 20km in a week",
+            "createdAt": 1539043200,
+            "reward": 500,
+            "level": 2,
+            "participants": []
+        },
+        "3": {
+            "uid": "3",
+            "title": "Walk 20km",
+            "description": "Walk 20km in a week",
+            "createdAt": 1539043200,
+            "reward": 500,
+            "level": 1,
+            "participants": []
+        },
+        "4": {
+            "uid": "4",
+            "title": "Walk 40km",
+            "description": "Walk 40km in a week",
+            "createdAt": 1539043200,
+            "reward": 500,
+            "level": 2,
+            "participants": []
+        }
+    }
+}

@@ -6,7 +6,7 @@ import * as _cors from 'cors';
 import { functionsConfig } from './functions-config';
 
 // Config
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 const app = express();
 const db = admin.firestore();

@@ -1,10 +1,14 @@
-import { WordArray } from "crypto-js";
-import { Timestamp } from "firestore";
+import { UserInfo } from 'firebase';
 
-export class UserModel {
+export class RunningUserModel implements UserInfo {
+    displayName: string;
+    email: string;
+    phoneNumber: string;
+    photoURL: string;
+    providerId: string;
+    uid: string;
+    //Extended
     username: string;
-    password: WordArray;
-    name: string;
-    birthday: Timestamp;
+    birthday: Date;
     city: string;
 }

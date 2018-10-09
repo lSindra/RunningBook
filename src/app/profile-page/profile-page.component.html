@@ -1,16 +1,16 @@
-<div *ngIf="auth.authState| async as user; then authenticated else none">
+<div *ngIf="this.user as user; then authenticated else none">
 
 </div>
 
 <ng-template #authenticated>
-  <mat-card *ngIf="auth.user | async as user">
+  <mat-card *ngIf="auth.user | async as authUser">
     <!--<form [formGroup]="updateFormGroup" >-->
     <!--card header-->
     <mat-card-header fxLayout="column" fxLayoutAlign="center center">
 
       <img mat-card-avatar [src]="authProcess?.getUserPhotoUrl()">
 
-      <div *ngIf="user.emailVerified; then emailVerified else emailNotVerified"></div>
+      <div *ngIf="authUser.emailVerified; then emailVerified else emailNotVerified"></div>
       <ng-template #emailVerified>
         <mat-icon color="primary"
                   matTooltip="email is verified"
@@ -42,6 +42,22 @@
               cancel
             </button>
           </div>
+
+          <!--username-->
+          <mat-form-field class="full-width" [appearance]="appearance">
+            <mat-label>Username</mat-label>
+            <input matInput
+                   placeholder="Username"
+                   [formControl]="updateUsernameFormControl"
+                   [value]="user.username">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint align="end" aria-live="polite">
+              {{updateUsernameFormControl.value.length}} / 25
+            </mat-hint>
+            <mat-error *ngIf="updateUsernameFormControl.hasError('required')">
+              Username is required
+            </mat-error>
+          </mat-form-field>
 
           <!--name-->
           <mat-form-field class="full-width" [appearance]="appearance">
@@ -114,6 +130,15 @@
           edit
         </button>
       </div>
+
+      <!--username-->
+      <mat-form-field class="full-width" [appearance]="appearance">
+        <mat-label>Username</mat-label>
+        <input matInput
+               placeholder="Username"
+               [value]="user.username"
+               [disabled]="!editMode">
+      </mat-form-field>
 
       <!--name-->
       <mat-form-field class="full-width" [appearance]="appearance">

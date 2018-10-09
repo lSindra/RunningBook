@@ -9,7 +9,7 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
-  "main": "lib/src/index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "@types/crypto-js": "^3.1.43",
     "bcrypt": "^3.0.1",
@@ -20,6 +20,7 @@
     "express": "^4.16.3",
     "firebase-admin": "^6.0.0",
     "firebase-functions": "^2.0.3",
+    "firebase-functions-helper": "^0.5.10",
     "firestore": "^1.1.6"
   },
   "devDependencies": {

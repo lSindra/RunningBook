@@ -12,7 +12,6 @@ export function populateRunningBookUserModel(user: UserInfo) {
     runningUser.uid= user.uid;
 
     //import from database
-
     
     return runningUser;
 }

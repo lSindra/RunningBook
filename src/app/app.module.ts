@@ -36,6 +36,7 @@ import { CoreModule } from './core/core.module';
 import { AngularFireModule } from '@angular/fire';
 import { AuthGuard } from './core/auth.guard';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ChallengePageComponent } from './challenge-page/challenge-page.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -47,7 +48,8 @@ export function initializeApp(appConfig: AppConfigService) {
   LoginComponent,
   HomeComponent,
   NotFoundComponent,
-  ProfilePageComponent
+  ProfilePageComponent,
+  ChallengePageComponent
   ],
   imports: [
     BrowserModule,

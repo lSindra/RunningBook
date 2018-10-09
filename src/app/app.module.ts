@@ -7,6 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {
   MatButtonModule,
   MatCardModule,
@@ -22,13 +23,12 @@ import {
   MatProgressBarModule,
   MatCheckboxModule
 } from '@angular/material';
-import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 
 import { ROUTES } from './app.routes';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { AppComponent } from './_components/app.component';
+import { LoginComponent } from './_components/login/login.component';
+import { HomeComponent } from './_components/home/home.component';
+import { NotFoundComponent } from './_components/not-found/not-found.component';
 import { UserService } from './_services/user.service';
 import { ChallengeService } from './_services/challenge.service';
 import { AppConfigService } from './config/app-config.service';
@@ -36,8 +36,8 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { AngularFireModule } from '@angular/fire';
 import { AuthGuard } from './core/auth.guard';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { ChallengePageComponent } from './challenge-page/challenge-page.component';
+import { ProfilePageComponent } from './_components/profile-page/profile-page.component';
+import { ChallengePageComponent } from './_components/challenge-page/challenge-page.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();

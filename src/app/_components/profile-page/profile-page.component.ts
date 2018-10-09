@@ -3,9 +3,9 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {MatSnackBar} from '@angular/material';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthProcessService, FirestoreSyncService } from 'ngx-auth-firebaseui';
-import { UserService } from '../_services/user.service';
-import { RunningUserModel } from '../_models/user-model';
-import { cleanUserModel } from '../_models/user-model';
+import { UserService } from '../../_services/user.service';
+import { RunningUserModel } from '../../_models/user-model';
+import { cleanUserModel } from '../../_models/user-model';
 
 @Component({
   selector: 'app-profile-page',

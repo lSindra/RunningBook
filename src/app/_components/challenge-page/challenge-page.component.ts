@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ChallengeService } from '../../_services/challenge.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material';
+import { AuthProcessService, FirestoreSyncService } from 'ngx-auth-firebaseui';
+import { ChallengeModel } from 'src/app/_models/challenge-model';
+import { ChallengeService } from 'src/app/_services/challenge.service';
 
 @Component({
   selector: 'app-challenge-page',
@@ -7,10 +11,22 @@ import { ChallengeService } from '../../_services/challenge.service';
   styleUrls: ['./challenge-page.component.scss']
 })
 export class ChallengePageComponent implements OnInit {
+  challenges: ChallengeModel[];
 
-  constructor(private challengeService: ChallengeService) { }
+  constructor(public auth: AngularFireAuth,
+              public authProcess: AuthProcessService,
+              private _fireStoreService: FirestoreSyncService,
+              private snackBar: MatSnackBar,
+              private challengeService: ChallengeService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.populateChallenges();
   }
-  
+
+  populateChallenges() {
+    this.challengeService.getChallenges().subscribe(
+      (challenges) => this.challenges = challenges
+      );
+  }
+
 }

@@ -21,11 +21,14 @@ export class Challenges {
 
         //Get all challenges
         this.challengeAPI.get('/', (req, res) => {
-            challengeCollection.get().then(snapshot => {
-                snapshot.docs.map(doc => res.send(doc.data()));
+            challengeCollection.get().then(function(snapshot) {
+                let challenges = snapshot.docs.map(doc => {
+                    return doc.data();
+                });
+                res.json(challenges);
             }).catch(error => {
                 console.log("Error getting document:", error);
-            })
+            });
         });
 
         //Get challenge by UID
@@ -34,7 +37,7 @@ export class Challenges {
 
             challengeCollection.doc(uid).get().then(function(challenge) {
                 if (challenge.exists) {
-                    res.send(challenge.data())
+                    res.send(challenge.data());
                 } else {
                     console.log("No such challenge!");
                 }

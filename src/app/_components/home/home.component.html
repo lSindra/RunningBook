@@ -1,3 +1,22 @@
-<p>
-  home works!
-</p>
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile style="background-color:lightblue"
+      [colspan]="3"
+      [rowspan]="2">
+    <app-user-overview></app-user-overview>
+  </mat-grid-tile>
+  <mat-grid-tile style="background-color:lightgreen"
+      [colspan]="1"
+      [rowspan]="6">
+    <app-ranking-overview></app-ranking-overview>
+  </mat-grid-tile>
+  <mat-grid-tile style="background-color:lightpink"
+      [colspan]="1"
+      [rowspan]="4">
+      <app-challenges-overview></app-challenges-overview>
+  </mat-grid-tile>
+  <mat-grid-tile style="background-color:#DDBDF1"
+      [colspan]="2"
+      [rowspan]="4">
+      <app-feed></app-feed>
+  </mat-grid-tile>
+</mat-grid-list>

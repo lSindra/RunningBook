@@ -21,7 +21,8 @@ import {
   MatTooltipModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { ROUTES } from './app.routes';
@@ -38,6 +39,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AuthGuard } from './core/auth.guard';
 import { ProfilePageComponent } from './_components/profile-page/profile-page.component';
 import { ChallengePageComponent } from './_components/challenge-page/challenge-page.component';
+import { UserOverviewComponent } from './_components/home/user-overview/user-overview.component';
+import { RankingOverviewComponent } from './_components/home/ranking-overview/ranking-overview.component';
+import { ChallengesOverviewComponent } from './_components/home/challenges-overview/challenges-overview.component';
+import { FeedComponent } from './_components/home/feed/feed.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -50,7 +55,11 @@ export function initializeApp(appConfig: AppConfigService) {
   HomeComponent,
   NotFoundComponent,
   ProfilePageComponent,
-  ChallengePageComponent
+  ChallengePageComponent,
+  UserOverviewComponent,
+  RankingOverviewComponent,
+  ChallengesOverviewComponent,
+  FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +81,7 @@ export function initializeApp(appConfig: AppConfigService) {
     MatProgressBarModule,
     MatDialogModule,
     MatPasswordStrengthModule,
+    MatGridListModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,

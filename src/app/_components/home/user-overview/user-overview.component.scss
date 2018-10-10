@@ -1,0 +1,19 @@
+:host {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+img {
+    position: relative;
+    height: 500px;
+    border-radius: 50%;
+    right: 300px;
+    transition: all .6s ease-in-out;
+}
+.hovering {
+    zoom: 110%;
+}

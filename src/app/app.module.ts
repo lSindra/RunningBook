@@ -24,7 +24,10 @@ import {
   MatCheckboxModule,
   MatGridListModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatBadgeModule,
+  MatToolbarModule,
+  MatExpansionModule
 } from '@angular/material';
 
 import { ROUTES } from './app.routes';
@@ -86,6 +89,9 @@ export function initializeApp(appConfig: AppConfigService) {
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatExpansionModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,

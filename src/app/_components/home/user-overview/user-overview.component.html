@@ -4,7 +4,8 @@
     <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar">
     <div class="userInfo">
         <h1>{{user.displayName}}</h1>
-        <h4>{{user.level}}</h4>
     </div>
-        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+    <span class="userLevel" [matBadge]="user.level" matBadgeOverlap="false"></span>
+      
+    <mat-progress-bar mode="determinate" [value]="100*user.experience / this.levels[user.level].experience"></mat-progress-bar>
 </ng-template>

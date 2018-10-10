@@ -1,17 +1,15 @@
-<header>
+<mat-toolbar>
   <div class="col">
-    <h1 class="title">
-      Welcome to {{ title }}!
-    </h1>
+    <button mat-flat-button [routerLink]="['/']"><h1 class="title">{{title}}</h1></button>
   </div>
   <div *ngIf="!this.isLoggedIn()">
-    <a [routerLink]="['/login']" class="btn btn-link">Login</a>
+    <button mat-button [routerLink]="['/login']">Login</button>
   </div>
   <div *ngIf="this.isLoggedIn()">
-    <a [routerLink]="['/profile']" class="btn btn-link">{{user.displayName}}</a>
-    <a (click)="signOut()" [routerLink]="['/login']" class="btn btn-link">Logout</a>
+    <button mat-button *ngIf="!this.user.isAnonymous" [routerLink]="['/profile']">{{user.displayName}}</button>
+    <button mat-button (click)="signOut()" [routerLink]="['/login']">Logout</button>
   </div>
-</header>
+</mat-toolbar>
 
 <main>
   <router-outlet></router-outlet>

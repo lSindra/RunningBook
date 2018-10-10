@@ -1,0 +1,28 @@
+:host {
+    height: 100%;
+    background-color: white;
+}
+
+.content {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.content .feed {
+    padding: 50px;
+}
+.content .read-more {
+    position: absolute; 
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    text-align: center; 
+    margin: 0; padding: 50px 0; 
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, rgba(255, 255, 255, 0)),//transparent
+        color-stop(1, white)//final color
+    );
+}

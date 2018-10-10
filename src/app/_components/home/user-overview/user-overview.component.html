@@ -1,1 +1,10 @@
-<img id="img" src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar">
+<div *ngIf="this.user as user; then load"></div>
+
+<ng-template #load>
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar">
+    <div class="userInfo">
+        <h1>{{user.displayName}}</h1>
+        <h4>{{user.level}}</h4>
+    </div>
+        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+</ng-template>

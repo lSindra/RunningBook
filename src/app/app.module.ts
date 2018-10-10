@@ -22,7 +22,9 @@ import {
   MatProgressSpinnerModule,
   MatProgressBarModule,
   MatCheckboxModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 import { ROUTES } from './app.routes';
@@ -82,6 +84,8 @@ export function initializeApp(appConfig: AppConfigService) {
     MatDialogModule,
     MatPasswordStrengthModule,
     MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,

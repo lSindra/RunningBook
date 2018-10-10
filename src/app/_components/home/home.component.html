@@ -1,7 +1,9 @@
-<mat-grid-list cols="4" rowHeight="100px">
+<mat-grid-list 
+  [gutterSize]="50" cols="4" rowHeight="100px">
   <mat-grid-tile style="background-color:lightblue"
       [colspan]="3"
-      [rowspan]="2">
+      [rowspan]="2"
+      [mat-elevation-z8]>
     <app-user-overview></app-user-overview>
   </mat-grid-tile>
   <mat-grid-tile style="background-color:lightgreen"

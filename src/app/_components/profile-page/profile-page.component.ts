@@ -73,19 +73,14 @@ export class ProfilePageComponent implements OnInit {
           ]
       ),
 
-      birthday: this.updateUsernameFormControl = new FormControl(
+      birthday: this.updateBirthdayFormControl = new FormControl(
           {value: this.user.birthday, disabled: true},
-          [
-            Validators.required,
-            Validators.minLength(2),
-            Validators.maxLength(25),
-          ]
+          []
       ),
 
-      city: this.updateUsernameFormControl = new FormControl(
+      city: this.updateCityFormControl = new FormControl(
           {value: this.user.city, disabled: true},
           [
-            Validators.required,
             Validators.minLength(2),
             Validators.maxLength(25),
           ]
@@ -128,6 +123,11 @@ export class ProfilePageComponent implements OnInit {
           this.user.username = this.updateUsernameFormControl.value;
           await this.userService.updateUser(this.user);
           snackBarMsg.push(`your username has been update to ${this.updateUsernameFormControl.value}`);
+        }
+        if (this.updateBirthdayFormControl.dirty && this.updateBirthdayFormControl.valid) {
+          this.user.birthday = this.updateBirthdayFormControl.value;
+          await this.userService.updateUser(this.user);
+          snackBarMsg.push(`your birthday date has been update to ${this.updateBirthdayFormControl.value}`);
         }
 
         await this._fireStoreService.updateUserData(this.authProcess.parseUserInfo(authUser));

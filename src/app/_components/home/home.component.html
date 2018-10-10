@@ -3,17 +3,19 @@
   <mat-grid-tile style="background-color:lightblue"
       [colspan]="3"
       [rowspan]="2"
-      [mat-elevation-z8]>
+      [routerLink]="['/profile']">
     <app-user-overview></app-user-overview>
   </mat-grid-tile>
   <mat-grid-tile style="background-color:lightgreen"
       [colspan]="1"
-      [rowspan]="6">
+      [rowspan]="6"
+      [routerLink]="['/ranking']">
     <app-ranking-overview></app-ranking-overview>
   </mat-grid-tile>
   <mat-grid-tile style="background-color:lightpink"
       [colspan]="1"
-      [rowspan]="4">
+      [rowspan]="4"
+      [routerLink]="['/challenges']">
       <app-challenges-overview></app-challenges-overview>
   </mat-grid-tile>
   <mat-grid-tile style="background-color:#DDBDF1"

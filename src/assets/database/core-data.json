@@ -7,7 +7,8 @@
             "createdAt": 1539043200,
             "reward": 200,
             "level": 1,
-            "participants": []
+            "participants": [],
+            "category": "running"
         },
         "2": {
             "uid": "2",
@@ -16,7 +17,8 @@
             "createdAt": 1539043200,
             "reward": 500,
             "level": 2,
-            "participants": []
+            "participants": [],
+            "category": "running"
         },
         "3": {
             "uid": "3",
@@ -25,7 +27,8 @@
             "createdAt": 1539043200,
             "reward": 500,
             "level": 1,
-            "participants": []
+            "participants": [],
+            "category": "walking"
         },
         "4": {
             "uid": "4",
@@ -34,7 +37,8 @@
             "createdAt": 1539043200,
             "reward": 500,
             "level": 2,
-            "participants": []
+            "participants": [],
+            "category": "walking"
         }
     },
     "levels": {

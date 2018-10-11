@@ -5,5 +5,6 @@ export class ChallengeModel {
     level: number;
     reward: number;
     participants: Array<string>;
+    category: string;
     uid: string;
 }

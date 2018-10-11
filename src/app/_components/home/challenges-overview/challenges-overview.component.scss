@@ -1,0 +1,50 @@
+:host {
+    height: 100%;
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+mat-list {
+    margin-top: 15px;
+}
+
+mat-list-item:hover {
+    background-color: rgba(136, 136, 136, 0.253);
+}
+
+.userLevel {
+    position: absolute;
+    right: 40px;
+    top: 25px;
+    opacity: 1;
+}
+
+mat-chip.running {
+    background-color: rgb(196, 187, 68)!important;
+}
+
+mat-chip.walking {
+    background-color: rgb(49, 179, 60)!important;
+}
+
+mat-chip.others {
+    background-color: black!important;
+}

@@ -27,7 +27,8 @@ import {
   MatNativeDateModule,
   MatBadgeModule,
   MatToolbarModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatListModule
 } from '@angular/material';
 
 import { ROUTES } from './app.routes';
@@ -92,6 +93,7 @@ export function initializeApp(appConfig: AppConfigService) {
     MatBadgeModule,
     MatToolbarModule,
     MatExpansionModule,
+    MatListModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,

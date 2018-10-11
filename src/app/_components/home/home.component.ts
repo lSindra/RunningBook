@@ -31,6 +31,5 @@ export class HomeComponent {
     this.renderer.removeClass(element, "mat-grid-tile");
     this.renderer.setStyle(element, 'position', 'absolute');
     this.renderer.setStyle(element, 'display', 'table');
-    
   }
 }

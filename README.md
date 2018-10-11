@@ -15,6 +15,7 @@ git clone https://github.com/lSindra/RunningBook.git
 cd RunningBook
 //Importar banco
 node ./src/assets/database/import.js
+npm install
 npm start
 ```
 

@@ -18,9 +18,9 @@
       [routerLink]="['/challenges']">
       <app-challenges-overview></app-challenges-overview>
   </mat-grid-tile>
-  <mat-grid-tile style="background-color: white"
+  <mat-grid-tile #feedTile style="background-color:white"
       [colspan]="2"
       [rowspan]="4">
-      <app-feed></app-feed>
+    <app-feed (onReadMore)="readMore()"></app-feed>      
   </mat-grid-tile>
 </mat-grid-list>

@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from './core/auth.service'
+import { AuthService } from '../core/auth.service'
 import { User } from 'firebase';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   constructor(private auth: AuthService, private router: Router) {}

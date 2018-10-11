@@ -1,0 +1,26 @@
+<mat-grid-list 
+  [gutterSize]="50" cols="4" rowHeight="100px">
+  <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="2"
+      [routerLink]="['/profile']">
+    <app-user-overview></app-user-overview>
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="6"
+      [routerLink]="['/ranking']">
+    <app-ranking-overview></app-ranking-overview>
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="4"
+      [routerLink]="['/challenges']">
+      <app-challenges-overview></app-challenges-overview>
+  </mat-grid-tile>
+  <mat-grid-tile #feedTile
+      [colspan]="2"
+      [rowspan]="4">
+    <app-feed (onReadMore)="readMore()"></app-feed>      
+  </mat-grid-tile>
+</mat-grid-list>

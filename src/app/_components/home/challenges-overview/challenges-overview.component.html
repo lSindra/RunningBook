@@ -1,0 +1,19 @@
+<mat-list>
+  <mat-list-item *ngFor="let challenge of challenges">
+    <img matListAvatar src="https://png.pngtree.com/element_origin_min_pic/16/11/25/f2db5b1fae65676bfd1ecae1dbfdc3a2.jpg">
+    <div matLine>
+      <ul>
+        <li> {{challenge.title}} </li>
+        <li>
+          <mat-chip-list>
+            <mat-chip [ngClass]="challenge.category" selected="true">{{challenge.category}}</mat-chip>
+          </mat-chip-list>
+        </li>
+      </ul>
+    </div>
+    <p matLine>
+      <span> {{challenge.description}} </span>
+    </p>
+    <span class="userLevel" [matBadge]="challenge.level" matBadgeOverlap="false"></span>
+  </mat-list-item>
+</mat-list>

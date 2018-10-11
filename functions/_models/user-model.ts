@@ -11,4 +11,6 @@ export class RunningUserModel implements UserInfo {
     username: string;
     birthday: Date;
     city: string;
+    level: number;
+    experience: number;
 }

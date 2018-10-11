@@ -1,0 +1,10 @@
+<mat-list>
+  <mat-list-item *ngFor="let item of todos">
+    <img matListAvatar src="https://png.pngtree.com/element_origin_min_pic/16/11/25/f2db5b1fae65676bfd1ecae1dbfdc3a2.jpg">
+    <h3 matLine> {{item.who}} </h3>
+    <p matLine>
+      <span> {{item.what}} </span>
+      <span class="demo-2"> -- {{item.notes}} </span>
+    </p>
+  </mat-list-item>
+</mat-list>

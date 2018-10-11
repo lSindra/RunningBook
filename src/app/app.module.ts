@@ -7,6 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {
   MatButtonModule,
   MatCardModule,
@@ -20,22 +21,34 @@ import {
   MatTooltipModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatGridListModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatBadgeModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatListModule
 } from '@angular/material';
-import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 
 import { ROUTES } from './app.routes';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { AppComponent } from './_components/app.component';
+import { LoginComponent } from './_components/login/login.component';
+import { HomeComponent } from './_components/home/home.component';
+import { NotFoundComponent } from './_components/not-found/not-found.component';
 import { UserService } from './_services/user.service';
+import { ChallengeService } from './_services/challenge.service';
 import { AppConfigService } from './config/app-config.service';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { AngularFireModule } from '@angular/fire';
 import { AuthGuard } from './core/auth.guard';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProfilePageComponent } from './_components/profile-page/profile-page.component';
+import { ChallengePageComponent } from './_components/challenge-page/challenge-page.component';
+import { UserOverviewComponent } from './_components/home/user-overview/user-overview.component';
+import { RankingOverviewComponent } from './_components/home/ranking-overview/ranking-overview.component';
+import { ChallengesOverviewComponent } from './_components/home/challenges-overview/challenges-overview.component';
+import { FeedComponent } from './_components/home/feed/feed.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -47,7 +60,12 @@ export function initializeApp(appConfig: AppConfigService) {
   LoginComponent,
   HomeComponent,
   NotFoundComponent,
-  ProfilePageComponent
+  ProfilePageComponent,
+  ChallengePageComponent,
+  UserOverviewComponent,
+  RankingOverviewComponent,
+  ChallengesOverviewComponent,
+  FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +87,13 @@ export function initializeApp(appConfig: AppConfigService) {
     MatProgressBarModule,
     MatDialogModule,
     MatPasswordStrengthModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatListModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
@@ -83,6 +108,7 @@ export function initializeApp(appConfig: AppConfigService) {
   providers: [
     AuthGuard,
     UserService,
+    ChallengeService,
     AppConfigService,
        { provide: APP_INITIALIZER,
          useFactory: initializeApp,

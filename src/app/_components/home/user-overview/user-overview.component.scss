@@ -1,0 +1,62 @@
+:host {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+img {
+    position: relative;
+    height: 500px;
+    border-radius: 50%;
+    right: 320px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+}
+:host:hover img {
+    height: 600px;
+    right: 400px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.userInfo {
+    position: relative;
+    left: 0;
+    opacity: 0;
+    height: 80%;
+}
+
+:host:hover .userInfo {
+opacity: 1;
+left: -350px;
+transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+visibility: visible;
+}
+
+.userLevel {
+    position: absolute;
+    right: 40px;
+    top: 25px;
+    opacity: 0;
+}
+
+:host:hover .userLevel {
+    opacity: 1;
+    transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+    visibility: visible;
+}
+
+mat-progress-bar {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+    position: absolute;
+    bottom: 0;
+    height: 7px;
+    width: 100%;
+}
+:host:hover mat-progress-bar {
+    opacity: 1;
+}

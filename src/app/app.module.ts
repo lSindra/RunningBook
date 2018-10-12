@@ -38,6 +38,7 @@ import { HomeComponent } from './_components/home/home.component';
 import { NotFoundComponent } from './_components/not-found/not-found.component';
 import { UserService } from './_services/user.service';
 import { ChallengeService } from './_services/challenge.service';
+import { FriendsService } from './_services/friends.service';
 import { AppConfigService } from './config/app-config.service';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -109,6 +110,7 @@ export function initializeApp(appConfig: AppConfigService) {
     AuthGuard,
     UserService,
     ChallengeService,
+    FriendsService,
     AppConfigService,
        { provide: APP_INITIALIZER,
          useFactory: initializeApp,

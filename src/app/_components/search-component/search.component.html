@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline" class="search-full-width">
+  <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="resultCtrl">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let result of filteredResults | async" [value]="result.name">
+      <img class="search-option-img" aria-hidden [src]="result.photo" height="25">
+      <span>{{result.name}}</span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

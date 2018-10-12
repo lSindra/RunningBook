@@ -25,6 +25,10 @@ export function cleanUserModel(user: RunningUserModel): RunningUserModel {
     if (!user.city) {
         user.city = "";
     }
+    if (!user.photoURL) {
+        console.log("HEEEY");
+        user.photoURL = "https://www.w3schools.com/howto/img_avatar.png";
+    }
 
     return user;
 }

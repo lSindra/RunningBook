@@ -1,0 +1,31 @@
+mat-form-field.mat-form-field {
+  font-size: 13px;
+  padding-top: 0.35em; 
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+mat-form-field-flex, mat-form-field {
+  height: 100%;
+}
+
+.search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.search-full-width {
+  width: 100%;
+}
+
+.search-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .search-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+  

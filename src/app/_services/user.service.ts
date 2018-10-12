@@ -17,6 +17,10 @@ export class UserService {
     return this.http.get<RunningUserModel>(this.url + uid);
   }
 
+  getUsersByFilter(filter: string): Observable<RunningUserModel[]> {
+    return this.http.get<RunningUserModel[]>(this.url + 'search/' + filter);
+  }
+
   updateUser(user: RunningUserModel) {
     return this.http.post<RunningUserModel>(this.url, user, httpOptions)
     .subscribe(

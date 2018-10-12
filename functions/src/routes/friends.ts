@@ -38,9 +38,8 @@ export class Friends {
         this.friendsAPI.get('/my-friends-with-type/:uid/:type', (req, res) => {
             const uid = req.params['uid'];
             const type = req.params['type'];
-            let query;
 
-            query = query.where("relating-user", "==", uid);
+            let query = friendsCollection.where("relating-user", "==", uid);
             query = query.where("type", "==", type);
 
             query.get().then(function(snapshot) {
@@ -57,17 +56,15 @@ export class Friends {
         this.friendsAPI.get('/relationship/:relatingID/:relatedID', (req, res) => {
             const relatingID = req.params['relatingID'];
             const relatedID = req.params['relatedID'];
-            let query;
 
-            query = query.where("relating-user", "==", relatingID);
+            let query = friendsCollection.where("relating-user", "==", relatingID);
             query = query.where("related-user", "==", relatedID);
 
-            query.get().then(function(relation) {
-                if (relation.exists) {
-                    res.send(relation.data())
-                } else {
-                    console.log("No such relation!");
-                }
+            query.get().then(function(snapshot) {
+                let relation = snapshot.docs.map(doc => {
+                    return doc.data();
+                });
+                res.json(relation);
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             });

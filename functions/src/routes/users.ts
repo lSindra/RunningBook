@@ -34,6 +34,25 @@ export class Users {
             });
         });
 
+        //Get users by filter
+        this.userAPI.get('/search/:filter', (req, res) => {
+            const filter = req.params['filter'];
+
+            let query = userCollection.where("displayName", "==", filter);
+            // query = query.where("email", "==", filter);
+            // query = query.where("phoneNumber", "==", filter);
+
+            query.get().then(function(snapshot) {
+                let users = snapshot.docs.map(doc => {
+                    return doc.data();
+                });
+                console.log(users);
+                res.json(users);
+            }).catch(error => {
+                console.log("Error getting document:", error);
+            });
+        });
+
         //Update user
         this.userAPI.post('/', (req, res) => {
             const user = req.body;

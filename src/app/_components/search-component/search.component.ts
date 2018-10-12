@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { SearchResult } from 'src/app/_models/search-result-model';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -24,9 +21,4 @@ export class SearchComponent {
       this.showResults = false;
     }
   }
-
-  resultCtrl = new FormControl();
-  filteredResults: Observable<SearchResult[]>;
-
-  constructor() {}
 }

@@ -38,9 +38,8 @@ export class Users {
         this.userAPI.get('/search/:filter', (req, res) => {
             const filter = req.params['filter'];
 
-            let query = userCollection.where("displayName", "==", filter);
-            // query = query.where("email", "==", filter);
-            // query = query.where("phoneNumber", "==", filter);
+            let query = userCollection.
+                where("displayName", "array-contains", filter);
 
             query.get().then(function(snapshot) {
                 let users = snapshot.docs.map(doc => {

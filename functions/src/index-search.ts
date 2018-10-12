@@ -9,7 +9,7 @@ export class IndexSearch {
     listenToCreation(collection: string): functions.CloudFunction<functions.firestore.DocumentSnapshot> {
         return functions.firestore
             .document(collection + '/{uid}')
-            .onCreate((snap, contect) => {
+            .onCreate((snap, context) => {
                 const data = snap.data();
                 const objectId = snap.id;
                 return index.addObject({
@@ -18,6 +18,20 @@ export class IndexSearch {
             });
         });
     }
+
+    listenToUpdate(collection: string): functions.CloudFunction<functions.Change<functions.firestore.DocumentSnapshot>> {
+        return functions.firestore
+            .document(collection + '/{uid}')
+            .onUpdate((snap, context) => {
+                const data = snap.after.data();
+                const objectId = snap.after.id;
+                return index.saveObject({
+                    objectId,
+                    ...data
+            });
+        });
+    }
+
     listenToDeletion(collection: string): functions.CloudFunction<functions.firestore.DocumentSnapshot> {
         return functions.firestore
             .document(collection + '/{uid}')

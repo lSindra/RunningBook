@@ -1,6 +1,16 @@
 ::ng-deep .ais-Hits {
     background-color: white;
     z-index: 2;
-    position: relative;
+    position: absolute;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    flex-grow: 10;
+    flex-basis: auto;
+    flex: 1 100%;
+}
+
+.container {
+    padding-top: 0.5em;
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
 }

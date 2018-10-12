@@ -1,4 +1,4 @@
-<ais-instantsearch [config]="searchConfig">
+<ais-instantsearch [config]="searchConfig"  class="container">
   <ais-search-box (change)="searchChanged($event)"></ais-search-box>
 
   <ais-hits *ngIf="showResults">

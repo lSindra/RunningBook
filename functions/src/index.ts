@@ -3,7 +3,6 @@ import * as admin from 'firebase-admin';
 import { Users } from './routes/users';
 import { Challenges } from './routes/challenges';
 import { Friends } from './routes/friends';
-import { Search } from './routes/search';
 import { IndexSearch } from './index-search';
 
 // Config
@@ -14,13 +13,11 @@ db.settings({ timestampsInSnapshots: true });
 const userAPI = new Users(db);
 const challengeAPI = new Challenges(db);
 const friendsAPI = new Friends(db);
-const searchAPI = new Search(db);
 const indexSearch = new IndexSearch();
 
 exports.userAPI = userAPI.toFunction();
 exports.challengeAPI = challengeAPI.toFunction();
 exports.friendsAPI = friendsAPI.toFunction();
-exports.searchAPI = searchAPI.toFunction();
 
 exports.indexUser = indexSearch.listenToCreation('users');
 exports.unindexUser = indexSearch.listenToCreation('users');

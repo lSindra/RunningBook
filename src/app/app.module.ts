@@ -7,6 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { NgAisModule } from 'angular-instantsearch';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {
   MatButtonModule,
@@ -104,6 +105,7 @@ export function initializeApp(appConfig: AppConfigService) {
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    NgAisModule.forRoot(),
     HttpModule,
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,

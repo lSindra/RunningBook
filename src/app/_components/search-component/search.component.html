@@ -1,9 +1,11 @@
-<mat-form-field appearance="outline" class="search-full-width">
-  <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="resultCtrl">
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let result of filteredResults | async" [value]="result.name">
-      <img class="search-option-img" aria-hidden [src]="result.photo" height="25">
-      <span>{{result.name}}</span>
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+<ais-instantsearch [config]="searchConfig">
+  <ais-search-box (change)="searchChanged($event)"></ais-search-box>
+
+  <ais-hits *ngIf="showResults">
+      <ng-template let-hits="hits">
+          <div *ngFor="let hit of hits">
+              <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
+          </div>
+      </ng-template>
+  </ais-hits>
+</ais-instantsearch>

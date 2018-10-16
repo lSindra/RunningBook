@@ -4,9 +4,10 @@
     <ais-hits *ngIf="showResults">
         <ng-template let-hits="hits">
             <div *ngFor="let hit of hits">
-                <img class="example-option-img" onerror="if (this.src != 'https://www.w3schools.com/howto/img_avatar.png') this.src = 'https://www.w3schools.com/howto/img_avatar.png';" aria-hidden src="hit.photoURL" height="25">
-                {{hit.photoURL}}
-                <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
+                <div *ngIf="hit.displayName" [routerLink]="['/user/hit.username']">
+                    <img class="example-option-img" onerror="if (this.src != 'https://www.w3schools.com/howto/img_avatar.png') this.src = 'https://www.w3schools.com/howto/img_avatar.png';" aria-hidden src="hit.photoURL" height="25">
+                    <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
+                </div>
             </div>
         </ng-template>
     </ais-hits>

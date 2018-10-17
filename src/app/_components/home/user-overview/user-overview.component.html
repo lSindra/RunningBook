@@ -1,7 +1,7 @@
 <div *ngIf="this.user as user; then load"></div>
 
 <ng-template #load>
-    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar">
+    <img [src]="user.photoURL" onerror="this.src = 'https://www.w3schools.com/howto/img_avatar.png'">
     <div class="userInfo">
         <h1>{{user.displayName}}</h1>
     </div>

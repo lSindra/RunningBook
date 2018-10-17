@@ -1,12 +1,10 @@
 ::ng-deep .ais-Hits {
     background-color: white;
     z-index: 2;
-    position: absolute;
+    position: fixed;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    flex-grow: 10;
-    flex-basis: auto;
-    flex: 1 100%;
-    align-self: stretch;
+    width: 270px;
+    padding: 10px;
 }
 
 ::ng-deep .container {
@@ -14,8 +12,19 @@
     display: flex;
     flex-flow: row wrap;
     flex-direction: column;
+    width: 300px;
 }
 
-// .example-full-width {
-// width: 100%;
-//}
+::ng-deep .search-result {
+    padding: 5px;
+    width: 100%;
+    text-align: left;
+}
+
+::ng-deep .search-result:hover {
+    background-color: rgba(136, 136, 136, 0.253);
+}
+
+::ng-deep .result-img {
+    padding-right: 5px;
+}

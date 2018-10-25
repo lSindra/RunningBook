@@ -28,7 +28,6 @@ export class SearchComponent {
 
   onBlur(event) {
     if (event.relatedTarget) {
-      console.log(event.relatedTarget.classList.value);
       const target = event.relatedTarget.classList;
       if (!target.value.includes('search-result')) {
         this.reset();

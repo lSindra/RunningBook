@@ -8,9 +8,9 @@ import { ProfilePageComponent } from './_components/profile-page/profile-page.co
 import { ChallengePageComponent } from './_components/challenge-page/challenge-page.component';
 
 export const ROUTES: Routes = [
-  { path: '',         component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'profile',  component: ProfilePageComponent, canActivate: [AuthGuard] },
-  { path: 'challenges',  component: ChallengePageComponent, canActivate: [AuthGuard] },
-  { path: 'login',    component: LoginComponent },
-  { path: '**',       component: NotFoundComponent }
+  { path: '',           component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'profile',    component: ProfilePageComponent, canActivate: [AuthGuard] },
+  { path: 'challenges', component: ChallengePageComponent, canActivate: [AuthGuard] },
+  { path: 'login',      component: LoginComponent },
+  { path: '**',         component: NotFoundComponent, canActivate: [AuthGuard] }
 ];

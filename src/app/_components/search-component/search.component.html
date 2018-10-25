@@ -1,14 +1,14 @@
 <ais-instantsearch [config]="searchConfig"  class="container">
-    <ais-search-box (change)="searchChanged($event)"></ais-search-box>
+  <ais-search-box (change)="searchChanged($event)" (reset)="reset()" (blur)="onBlur($event)"></ais-search-box>
 
-    <ais-hits *ngIf="showResults">
-        <ng-template let-hits="hits">
-            <div *ngFor="let hit of hits">
-                <button mat-button [routerLink]="'users/' + hit.username" *ngIf="hit.displayName" class="search-result">
-                    <img class="result-img" onerror="this.src = 'https://www.w3schools.com/howto/img_avatar.png'" aria-hidden [src]="hit.photoURL" height="25">
-                    <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
-                </button>
-            </div>
-        </ng-template>
-    </ais-hits>
+  <ais-hits *ngIf="showResults">
+    <ng-template let-hits="hits">
+      <div *ngFor="let hit of hits">
+        <button mat-button (click)="reset()"  [routerLink]="'users/' + hit.username" *ngIf="hit.displayName" class="search-result">
+          <img class="result-img" onerror="this.src='https://www.w3schools.com/howto/img_avatar.png'" aria-hidden [src]="hit.photoURL" height="25">
+          <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
+        </button>
+      </div>
+    </ng-template>
+  </ais-hits>
 </ais-instantsearch>

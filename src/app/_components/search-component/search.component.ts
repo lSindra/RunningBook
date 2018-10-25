@@ -10,15 +10,31 @@ export class SearchComponent {
   searchConfig = {
     ...environment.algolia,
     indexName: 'user_search'
-  }
+  };
 
   showResults = false;
 
   searchChanged(query) {
     if (query.length) {
       this.showResults = true;
-    } else {
+    } else if (query.length <= 0) {
       this.showResults = false;
+    }
+  }
+
+  reset() {
+    this.showResults = false;
+  }
+
+  onBlur(event) {
+    if (event.relatedTarget) {
+      console.log(event.relatedTarget.classList.value);
+      const target = event.relatedTarget.classList;
+      if (!target.value.includes('search-result')) {
+        this.reset();
+      }
+    } else {
+      this.reset();
     }
   }
 }

@@ -38,7 +38,12 @@ export class FriendsService {
   }
 
   updateOrCreateRelationshipByBothUID(relatingUID: string, relatedUID: string, type: string) {
-    return this.http.post<RelationshipModel>(this.url + relatingUID + '/' + relatedUID, type, httpOptions)
+    const relationship = new RelationshipModel;
+    relationship.relationUser = relatingUID;
+    relationship.relatedUser = relatedUID;
+    relationship.type = type;
+
+    return this.http.post<RelationshipModel>(this.url, relationship, httpOptions)
       .subscribe(
         data => {
             console.log('POST Request is successful ', data);

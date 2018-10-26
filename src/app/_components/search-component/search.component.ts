@@ -1,3 +1,4 @@
+import { FriendsService } from './../../_services/friends.service';
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
@@ -7,6 +8,8 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  constructor (private friendsService: FriendsService) {}
+
   searchConfig = {
     ...environment.algolia,
     indexName: 'user_search'
@@ -37,8 +40,8 @@ export class SearchComponent {
     }
   }
 
-  addFriend(event) {
+  addFriend(event, uid: string) {
     event.stopPropagation();
-    console.log('adding');
+    this.friendsService.addFriend(uid);
   }
 }

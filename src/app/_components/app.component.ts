@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../core/auth.service'
+import { AuthService } from '../core/auth.service';
 import { User } from 'firebase';
 
 @Component({
@@ -11,7 +11,7 @@ import { User } from 'firebase';
 })
 export class AppComponent {
   constructor(private auth: AuthService, private router: Router) {}
-  
+
   title = 'RunningBook';
   user: User;
 
@@ -21,7 +21,6 @@ export class AppComponent {
   }
 
   signOut() {
-    console.log("logout");
     this.auth.signOut();
     this.router.navigate(['/login']);
   }

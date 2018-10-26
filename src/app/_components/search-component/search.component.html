@@ -7,7 +7,7 @@
         <button mat-button (click)="reset()" [routerLink]="'users/' + hit.username" *ngIf="hit.displayName" class="search-result">
           <img class="result-img" onerror="this.src='https://www.w3schools.com/howto/img_avatar.png'" aria-hidden [src]="hit.photoURL" height="25">
           <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
-          <button mat-icon-button color="basic" (click)="addFriend($event)" class="add-friend friend-button">
+          <button mat-icon-button color="basic" (click)="addFriend($event, hit.uid)" class="add-friend friend-button">
             <mat-icon aria-label="Add user as friend">person_add</mat-icon>
           </button>
         </button>

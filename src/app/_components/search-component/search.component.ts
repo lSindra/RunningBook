@@ -29,11 +29,16 @@ export class SearchComponent {
   onBlur(event) {
     if (event.relatedTarget) {
       const target = event.relatedTarget.classList;
-      if (!target.value.includes('search-result')) {
+      if (!target.value.includes('search-result') && !target.value.includes('add-friend')) {
         this.reset();
       }
     } else {
       this.reset();
     }
+  }
+
+  addFriend(event) {
+    event.stopPropagation();
+    console.log('adding');
   }
 }

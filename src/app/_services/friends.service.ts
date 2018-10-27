@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppConfigService } from '../config/app-config.service';
@@ -21,12 +21,13 @@ export class FriendsService {
   private apiServer = AppConfigService.settings.apiServer.metadata;
   private url = this.apiServer + 'friendsAPI/';
 
-  getMyFriends(uid: string): Observable<RelationshipModel[]> {
-    return this.http.get<RelationshipModel[]>(this.url + this.auth.auth.currentUser.uid);
+  getMyRelations(): Observable<RelationshipModel[]> {
+    console.log(this.auth.auth.currentUser.uid);
+    return this.http.get<RelationshipModel[]>(this.url + 'my-relations/' + this.auth.auth.currentUser.uid);
   }
 
-  getMyFriendsByType(type: string): Observable<RelationshipModel[]> {
-    return this.http.get<RelationshipModel[]>(this.url + this.auth.auth.currentUser.uid + '/' + type);
+  getMyRelationsByType(type: string): Observable<RelationshipModel[]> {
+    return this.http.get<RelationshipModel[]>(this.url + 'my-relations-with-type/' + this.auth.auth.currentUser.uid + ',' + type);
   }
 
   getRelationshipByRelatedUID(relatedUID: string): Observable<RelationshipModel> {
@@ -34,7 +35,10 @@ export class FriendsService {
   }
 
   getRelationshipByBothUID(relatingUID: string, relatedUID: string): Observable<RelationshipModel> {
-    return this.http.get<RelationshipModel>(this.url + relatingUID + '/' + relatedUID);
+    let params = new HttpParams();
+    params = params.append('relationUser', relatingUID);
+    params = params.append('relatedUser', relatedUID);
+    return this.http.get<RelationshipModel>(this.url, {params});
   }
 
   updateOrCreateRelationshipByBothUID(relatingUID: string, relatedUID: string, type: string) {

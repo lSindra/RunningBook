@@ -9,7 +9,7 @@ export class SearchService {
               private userConverter: UserToSearchResult) {}
 
   searchWithFilter(filter: string): SearchResult[] {
-    if (!filter) {return}
+    if (!filter) { return; }
     const filterValue = filter.toLowerCase();
 
     let results;

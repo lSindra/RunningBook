@@ -20,11 +20,11 @@ export class Friends {
     // const friendsCollection = db.collection('friends');
     const friendsCollection = db.collection('user-relation');
 
-    //Get friends by user UID
-    this.friendsAPI.get('/my-friends/:uid', (req, res) => {
-        const uid = req.params['uid'];
+    //Get relations by user UID
+    this.friendsAPI.get('/my-relations/:uid', (req, res) => {
+        const uid = '/user/' + req.params['uid'];
 
-        friendsCollection.where("relating-user", "==", uid).get().then(function(snapshot) {
+        friendsCollection.where("relationUser", "==", uid).get().then(function(snapshot) {
             const friends = snapshot.docs.map(doc => {
                 return doc.data();
             });
@@ -34,12 +34,12 @@ export class Friends {
         });
     });
 
-    // //Get friends by user UID and TYPE
-    this.friendsAPI.get('/my-friends-with-type/:uid/:type', (req, res) => {
+    // //Get relations by user UID and TYPE
+    this.friendsAPI.get('/my-relations-with-type/:uid,:type', (req, res) => {
         const uid = req.params['uid'];
         const type = req.params['type'];
 
-        let query = friendsCollection.where("relating-user", "==", uid);
+        let query = friendsCollection.where("relationUser", "==", uid);
         query = query.where("type", "==", type);
 
         query.get().then(function(snapshot) {
@@ -53,12 +53,12 @@ export class Friends {
     });
 
     //Get relationship by both UID
-    this.friendsAPI.get('/relationship/:relatingID/:relatedID', (req, res) => {
-        const relatingID = req.params['relatingID'];
-        const relatedID = req.params['relatedID'];
+    this.friendsAPI.get('/', (req, res) => {
+        const relatingID = req.params['relationUser'];
+        const relatedID = req.params['relatedUser'];
 
-        let query = friendsCollection.where("relating-user", "==", relatingID);
-        query = query.where("related-user", "==", relatedID);
+        let query = friendsCollection.where("relationUser", "==", relatingID);
+        query = query.where("relatedUser", "==", relatedID);
 
         query.get().then(function(snapshot) {
             const relation = snapshot.docs.map(doc => {
@@ -73,20 +73,32 @@ export class Friends {
     //Update or Create relationship
     this.friendsAPI.post('/', (req, res) => {
       const relationship = req.body;
+      relationship.relationUser = '/user/' + relationship.relationUser;
+      relationship.relatedUser  = '/user/' + relationship.relatedUser;
 
-      let query = friendsCollection.where("relating-user", "==", relationship.relatingID);
-      query = query.where("related-user", "==", relationship.relatedID);
+      let query = friendsCollection.where("relationUser", "==", relationship.relationUser);
+      query = query.where("relatedUser", "==", relationship.relatedUser);
 
       query.get().then(function(snapshot) {
-        const relation = snapshot.docs.map(doc => {
-          const relationshipUID = doc.data().uid;
-
-          relationshipUID.set((relationship)).then(() => {
+        if (!Array.isArray(snapshot.docs) || !snapshot.docs.length) {
+          friendsCollection.doc().create((relationship)).then(() => {
             res.sendStatus(201);
           }).catch(function(error) {
               console.log("Error updating relationship: ", error);
           });
-        });
+        } else {
+          snapshot.docs.map(doc => {
+            const relationshipUID = doc.data().uid;
+
+            if (relationshipUID) {
+              friendsCollection.doc(relationshipUID).set((relationship)).then(() => {
+                res.sendStatus(201);
+              }).catch(function(error) {
+                  console.log("Error updating relationship: ", error);
+              });
+            };
+          });
+        }
       }).catch(function(error) {
         console.log("Error getting document:", error);
       });

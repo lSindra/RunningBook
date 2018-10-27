@@ -7,7 +7,7 @@ export class RunningUserModel implements UserInfo {
     photoURL: string;
     providerId: string;
     uid: string;
-    //Extended
+    // Extended
     username: string;
     birthday: Date;
     city: string;
@@ -17,17 +17,16 @@ export class RunningUserModel implements UserInfo {
 
 export function cleanUserModel(user: RunningUserModel): RunningUserModel {
     if (!user.username) {
-        user.username = "";
+        user.username = '';
     }
     if (!user.birthday) {
         user.birthday = new Date();
     }
     if (!user.city) {
-        user.city = "";
+        user.city = '';
     }
     if (!user.photoURL) {
-        console.log("HEEEY");
-        user.photoURL = "https://www.w3schools.com/howto/img_avatar.png";
+        user.photoURL = 'https://www.w3schools.com/howto/img_avatar.png';
     }
 
     return user;

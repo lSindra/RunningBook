@@ -23,10 +23,6 @@ exports.indexUser = indexSearch.listenToCreation('users');
 exports.updateUser = indexSearch.listenToUpdate('users');
 exports.unindexUser = indexSearch.listenToDeletion('users');
 
-exports.indexFriends = indexSearch.listenToCreation('friends');
-exports.updateFriends = indexSearch.listenToUpdate('friends');
-exports.unindexFriends = indexSearch.listenToDeletion('friends');
-
 exports.indexChallenges = indexSearch.listenToCreation('challenges');
 exports.updateChallenges = indexSearch.listenToUpdate('challenges');
 exports.unindexChallenges = indexSearch.listenToDeletion('challenges');

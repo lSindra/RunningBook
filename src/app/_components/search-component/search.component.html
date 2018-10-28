@@ -9,7 +9,7 @@
           <ais-highlight attribute="displayName" [hit]="hit"></ais-highlight>
           <button mat-icon-button color="basic" disabled=true class="friend-button" *ngIf="getUserRelation(hit.uid) as relationType; else notFriend">
             <div *ngIf="relationType === 'friend'">
-              <mat-icon aria-label="Add user as friend">person</mat-icon>
+              <mat-icon aria-label="Add user as friend" color="accent">person</mat-icon>
             </div>
             <div *ngIf="relationType === 'request'">
               <mat-icon aria-label="Add user as friend">person_outline</mat-icon>

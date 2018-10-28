@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA, APP_INITIALIZER } from '@angular/core';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -55,6 +55,7 @@ import { FeedComponent } from './_components/home/feed/feed.component';
 import { SearchComponent } from './_components/search-component/search.component';
 import { SearchService } from './_services/search.service';
 import { UserToSearchResult } from './_models/converters/user-to-seach-result';
+import { NotificationsComponent } from './_components/notifications/notifications.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -72,7 +73,8 @@ export function initializeApp(appConfig: AppConfigService) {
   RankingOverviewComponent,
   ChallengesOverviewComponent,
   FeedComponent,
-  SearchComponent
+  SearchComponent,
+  NotificationsComponent
   ],
   imports: [
     BrowserModule,

@@ -36,6 +36,11 @@ $primary-font: 'Lato';
   -o-transition: all $timing $easing;
   transition: all $timing $easing;
 }
+
+:host {
+  align-self: center;
+}
+
 .wrapper{
   border: 1px solid lighten($primary-blue, 25%);
   max-width: 458px;

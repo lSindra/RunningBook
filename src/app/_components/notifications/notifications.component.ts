@@ -6,10 +6,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
-
   constructor() { }
 
-  ngOnInit() {
+  awaitingNotifications: number;
+  unreadNotifications: Notification[];
+  readNotifications: Notification[];
+
+  ngOnInit(): void {
+    this.setNewNotificationCount(0);
   }
 
+  showNotifications(event) {}
+
+  setNewNotificationCount(count: number) {
+    if (count <= 0) {
+      this.awaitingNotifications = null;
+    } else {
+      this.awaitingNotifications = count;
+    }
+  }
+
+  clearNewNotificationsCount() {
+    this.awaitingNotifications = null;
+  }
 }

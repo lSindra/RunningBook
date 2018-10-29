@@ -1,42 +1,36 @@
 <div class="dropdowns-wrapper">
   <div class="dropdown-container">
-    <div class="notifications dropdown dd-trigger" ng-click="showNotifications($event)">
-      <span class="count animated" id="notifications-count">{{awaitingNotifications}}</span>
-      <span class="fa fa-bell-o"></span>
+    <div class="notifications dropdown dd-trigger" (click)="showNotifications($event)">
+      <mat-icon id="notifications-count" matBadge="{{awaitingNotifications}}">notifications</mat-icon>
     </div>
-    <div class="dropdown-menu animated" id="notification-dropdown">
+    <div class="dropdown-menu animated" id="notification-dropdown" *ngIf="unreadNotifications"  [hidden]="!showNotificationsDropdown">
       <div class="dropdown-header">
         <span class="triangle"></span>
         <span class="heading">Notifications</span>
-        <span class="count" id="dd-notifications-count">{{newNotifications.length}}</span>
+        <span class="count" id="dd-notifications-count">{{unreadNotifications.length}}</span>
       </div>
       <div class="dropdown-body">
-        <div class="notification new" ng-repeat="notification in newNotifications.slice().reverse() track by notification.timestamp">
+        <div class="notification new" *ngFor="let notification of unreadNotifications.slice().reverse()">
           <div class="notification-image-wrapper">
             <div class="notification-image">
-              <img src="{{notification.user.imageUrl}}" alt="" width="32">
+              <img src="{{notification.icon}}" alt="" width="32">
             </div>
           </div>
           <div class="notification-text">
-             <span class="highlight">{{notification.user.name}}</span> {{notification.action}} {{notification.target}}
+            <span class="highlight">{{notification.title}}</span>
           </div>
         </div>
-        <div class="notification" ng-repeat="notification in readNotifications.slice().reverse() track by $index">
+        <div class="notification" *ngFor="let notification of readNotifications.slice().reverse()">
           <div class="notification-image-wrapper">
             <div class="notification-image">
-              <img src="{{notification.user.imageUrl}}" alt="" width="32">
+              <img src="{{notification.icon}}" alt="" width="32">
             </div>
           </div>
           <div class="notification-text">
-             <span class="highlight">{{notification.user.name}}</span> {{notification.action}} {{notification.target}}
+            <span class="highlight">{{notification.title}}</span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="dropdown-container">
-    <div class="messages dropdown">
-      <span class="fa fa-envelope-o"></span>
     </div>
   </div>
 </div>

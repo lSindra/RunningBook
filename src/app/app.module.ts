@@ -1,3 +1,4 @@
+import { NotificationsService } from './_services/notifications.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -117,6 +118,7 @@ export function initializeApp(appConfig: AppConfigService) {
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
+    NotificationsService,
     AuthGuard,
     UserService,
     ChallengeService,

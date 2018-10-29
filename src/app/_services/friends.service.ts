@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 import { AppConfigService } from '../config/app-config.service';
 import { RelationshipModel } from '../_models/relationship-model';
-import { AuthService } from '../core/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
@@ -22,7 +21,6 @@ export class FriendsService {
   private url = this.apiServer + 'friendsAPI/';
 
   getMyRelations(): Observable<RelationshipModel[]> {
-    console.log(this.auth.auth.currentUser.uid);
     return this.http.get<RelationshipModel[]>(this.url + 'my-relations/' + this.auth.auth.currentUser.uid);
   }
 

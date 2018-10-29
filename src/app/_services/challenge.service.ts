@@ -10,7 +10,7 @@ export class ChallengeService {
   constructor(private http: HttpClient) {}
   private apiServer = AppConfigService.settings.apiServer.metadata;
   private url = this.apiServer + 'challengeAPI/';
-  
+
   getChallengeByUID(uid: string): Observable<ChallengeModel> {
     return this.http.get<ChallengeModel>(this.url + uid);
   }

@@ -1,3 +1,5 @@
+import { NotificationModel } from './../../_models/notification-model';
+import { NotificationsService } from './../../_services/notifications.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,14 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
-  constructor() { }
+  constructor(private notificationsService: NotificationsService) { }
 
   awaitingNotifications: number;
-  unreadNotifications: Notification[];
-  readNotifications: Notification[];
+  notifications: NotificationModel[];
 
   ngOnInit(): void {
-    this.setNewNotificationCount(0);
+    this.initNotifications();
+
+    setInterval(() => {
+      this.updateNotifications();
+    }, 1000);
+  }
+
+  initNotifications() {
+    this.notificationsService.getMyNotifications().subscribe(notifications => {
+      if (notifications) {
+        this.notifications = notifications;
+        this.setNewNotificationCount(notifications.length);
+      }
+    });
+  }
+
+  updateNotifications() {
+    this.notificationsService.getMyNotifications().subscribe(notifications => {
+      notifications.forEach(notification => {
+        if (!this.notifications.includes(notification)) {
+          this.notifications.push(notification);
+        }
+      });
+    });
   }
 
   showNotifications(event) {}

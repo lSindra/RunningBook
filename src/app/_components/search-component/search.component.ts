@@ -2,8 +2,6 @@ import { FriendsService } from './../../_services/friends.service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { RelationshipModel } from 'src/app/_models/relationship-model';
-import { Subject, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-component',

@@ -4,7 +4,7 @@ import * as _cors from 'cors';
 
 import { functionsConfig } from '../functions-config';
 
-export class Challenges {    
+export class Challenges {
     constructor(db: FirebaseFirestore.Firestore) {
         this.challengeAPI = express();
         const cors = _cors;
@@ -12,7 +12,7 @@ export class Challenges {
             origin: functionsConfig.whitelist,
             optionsSuccessStatus: 200
         }
-        
+
         this.challengeAPI.use(cors(CorsOptions));
         this.challengeAPI.use(express.json());
         this.challengeAPI.disable('etag');

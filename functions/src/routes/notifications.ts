@@ -25,7 +25,7 @@ export class NotificationsAPI {
 
       notificationCollection.where("userID", "==", userID).get().then(function(snapshot) {
         const notifications = snapshot.docs.map(doc => {
-            return doc.data();
+          return doc.data();
         });
         res.json(notifications);
       }).catch(error => {

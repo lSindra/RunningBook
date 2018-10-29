@@ -82,6 +82,8 @@ export class Friends {
       query.get().then(function(snapshot) {
         if (!Array.isArray(snapshot.docs) || !snapshot.docs.length) {
           friendsCollection.doc().create((relationship)).then(() => {
+            // AfterCreate relationship
+
             res.sendStatus(201);
           }).catch(function(error) {
               console.log("Error updating relationship: ", error);
@@ -92,6 +94,9 @@ export class Friends {
 
             if (relationshipUID) {
               friendsCollection.doc(relationshipUID).set((relationship)).then(() => {
+              // AfterUpdate relationship
+
+
                 res.sendStatus(201);
               }).catch(function(error) {
                   console.log("Error updating relationship: ", error);

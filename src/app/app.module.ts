@@ -11,6 +11,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { NgAisModule } from 'angular-instantsearch';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {
+  MatMenuModule,
   MatButtonModule,
   MatCardModule,
   MatChipsModule,
@@ -105,6 +106,7 @@ export function initializeApp(appConfig: AppConfigService) {
     MatExpansionModule,
     MatListModule,
     MatAutocompleteModule,
+    MatMenuModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,

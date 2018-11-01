@@ -11,7 +11,7 @@
       </div>
 
       <div class="buttons-row">
-        <mat-button-mini-fab class="add-friend" *ngIf="notification.type === 'friendRequest'" (click)="addFriend(notification.sender, notification.uid)">
+        <mat-button-mini-fab class="add-friend" *ngIf="notification.type === 'friend-request'" (click)="addFriend(notification.sender, notification.uid)">
           <mat-icon>person_add</mat-icon>
         </mat-button-mini-fab>
 

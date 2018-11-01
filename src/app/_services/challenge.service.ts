@@ -9,14 +9,14 @@ import { ChallengeModel } from '../_models/challenge-model';
 export class ChallengeService {
   constructor(private http: HttpClient) {}
   private apiServer = AppConfigService.settings.apiServer.metadata;
+  private url = this.apiServer + 'challengeAPI/';
   
   getChallengeByUID(uid: string): Observable<ChallengeModel> {
-    const url = this.apiServer + 'challengeAPI/';
-    return this.http.get<ChallengeModel>(url + uid);
+    return this.http.get<ChallengeModel>(this.url + uid);
   }
 
   getChallenges(): Observable<ChallengeModel[]> {
     const url = this.apiServer + 'challengeAPI/';
-    return this.http.get<ChallengeModel[]>(url);
+    return this.http.get<ChallengeModel[]>(this.url);
   }
 }

@@ -36,6 +36,8 @@
               "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/angular-instantsearch/bundles/instantsearch.css",
+              "node_modules/angular-instantsearch/bundles/instantsearch-theme-algolia.css",
               "src/styles.scss"
           ],
           "scripts": [

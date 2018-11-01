@@ -1,0 +1,36 @@
+::ng-deep .ais-Hits {
+  background-color: white;
+  z-index: 2;
+  position: fixed;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  width: 270px;
+  padding: 10px;
+}
+
+::ng-deep .container {
+  padding-top: 0.5em;
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: column;
+  width: 300px;
+}
+
+::ng-deep .search-result {
+  z-index: 3;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+}
+
+::ng-deep .search-result:hover {
+  background-color: rgba(136, 136, 136, 0.253);
+}
+
+::ng-deep .result-img {
+  padding-right: 5px;
+}
+
+.friend-button {
+  float:right;
+  z-index: 4;
+}

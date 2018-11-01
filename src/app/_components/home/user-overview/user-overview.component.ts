@@ -3,6 +3,8 @@ import { RunningUserModel } from 'src/app/_models/user-model';
 import { UserService } from 'src/app/_services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { cleanUserModel } from '../../../_models/user-model';
+
 @Component({
   selector: 'app-user-overview',
   templateUrl: './user-overview.component.html',
@@ -40,7 +42,7 @@ export class UserOverviewComponent {
   }
   init() {
     this.userService.getUserByUID(this.auth.auth.currentUser.uid).subscribe(
-      (user)  => { this.user = user },
+      (user)  => { this.user = cleanUserModel(user) },
       (error) => { console.log(error) }
     )
   }

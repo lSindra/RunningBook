@@ -4,7 +4,7 @@ import * as _cors from 'cors';
 
 import { functionsConfig } from '../functions-config';
 
-export class Users {    
+export class Users {
     constructor(db: FirebaseFirestore.Firestore) {
         this.userAPI = express();
         const cors = _cors;
@@ -12,7 +12,7 @@ export class Users {
             origin: functionsConfig.whitelist,
             optionsSuccessStatus: 200
         }
-        
+
         this.userAPI.use(cors(CorsOptions));
         this.userAPI.use(express.json());
         this.userAPI.disable('etag');

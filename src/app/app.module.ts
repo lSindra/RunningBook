@@ -7,6 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { NgAisModule } from 'angular-instantsearch';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {
   MatButtonModule,
@@ -28,7 +29,8 @@ import {
   MatBadgeModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatListModule
+  MatListModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 import { ROUTES } from './app.routes';
@@ -38,6 +40,7 @@ import { HomeComponent } from './_components/home/home.component';
 import { NotFoundComponent } from './_components/not-found/not-found.component';
 import { UserService } from './_services/user.service';
 import { ChallengeService } from './_services/challenge.service';
+import { FriendsService } from './_services/friends.service';
 import { AppConfigService } from './config/app-config.service';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -49,6 +52,9 @@ import { UserOverviewComponent } from './_components/home/user-overview/user-ove
 import { RankingOverviewComponent } from './_components/home/ranking-overview/ranking-overview.component';
 import { ChallengesOverviewComponent } from './_components/home/challenges-overview/challenges-overview.component';
 import { FeedComponent } from './_components/home/feed/feed.component';
+import { SearchComponent } from './_components/search-component/search.component';
+import { SearchService } from './_services/search.service';
+import { UserToSearchResult } from './_models/converters/user-to-seach-result';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -65,7 +71,8 @@ export function initializeApp(appConfig: AppConfigService) {
   UserOverviewComponent,
   RankingOverviewComponent,
   ChallengesOverviewComponent,
-  FeedComponent
+  FeedComponent,
+  SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -94,9 +101,11 @@ export function initializeApp(appConfig: AppConfigService) {
     MatToolbarModule,
     MatExpansionModule,
     MatListModule,
+    MatAutocompleteModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    NgAisModule.forRoot(),
     HttpModule,
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,
@@ -109,10 +118,13 @@ export function initializeApp(appConfig: AppConfigService) {
     AuthGuard,
     UserService,
     ChallengeService,
+    FriendsService,
     AppConfigService,
-       { provide: APP_INITIALIZER,
-         useFactory: initializeApp,
-         deps: [AppConfigService], multi: true }
+    SearchService,
+    UserToSearchResult,
+    { provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [AppConfigService], multi: true }
   ],
   bootstrap: [AppComponent],
 })

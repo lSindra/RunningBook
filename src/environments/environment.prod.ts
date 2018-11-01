@@ -8,4 +8,8 @@ export const environment = {
     storageBucket: "running-book.appspot.com",
     messagingSenderId: "576961974826"
   },
+  algolia: {
+    appId: "NWHR5UG8FY",
+    apiKey: "0da8aeb101193768e622b794d4b67760"
+  }
 };

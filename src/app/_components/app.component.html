@@ -5,7 +5,8 @@
   <div *ngIf="!this.isLoggedIn()">
     <button mat-button [routerLink]="['/login']">Login</button>
   </div>
-  <div *ngIf="this.isLoggedIn()">
+  <div *ngIf="this.isLoggedIn()" class="row">
+    <app-search-component></app-search-component>
     <button mat-button *ngIf="!this.user.isAnonymous" [routerLink]="['/profile']">{{user.displayName}}</button>
     <button mat-button (click)="signOut()" [routerLink]="['/login']">Logout</button>
   </div>

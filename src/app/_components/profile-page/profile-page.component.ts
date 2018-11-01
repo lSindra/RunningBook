@@ -39,13 +39,12 @@ export class ProfilePageComponent implements OnInit {
       (user)  => { this.user = cleanUserModel(user) },
       (error) => { console.log(error) },
       ()      => { this.populateUpdateForm() }
-    )
+    );
     return this.user;
   }
 
   protected populateUpdateForm() {
     this.updateFormGroup = new FormGroup({
-      
       name: this.updateNameFormControl = new FormControl(
         {value: this.user.displayName, disabled: true},
         [
@@ -54,18 +53,18 @@ export class ProfilePageComponent implements OnInit {
           Validators.maxLength(25),
         ]
       ),
-      
+
       email: this.updateEmailFormControl = new FormControl(
           {value: this.user.email, disabled: true},
           [
             Validators.required
           ]),
-          
+
       phoneNumber: this.updatePhoneNumberFormControl = new FormControl('',
         []),
-      
+
       username: this.updateUsernameFormControl = new FormControl(
-          {value: "", disabled: true},
+          {value: '', disabled: true},
           [
             Validators.required,
             Validators.minLength(2),
@@ -89,7 +88,7 @@ export class ProfilePageComponent implements OnInit {
 
     this.updateFormGroup.enable();
   }
-      
+
   changeEditMode() {
     this.editMode = !this.editMode;
   }

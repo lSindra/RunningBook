@@ -1,3 +1,4 @@
+import { NotificationsService } from './notifications.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -5,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AppConfigService } from '../config/app-config.service';
 import { RelationshipModel } from '../_models/relationship-model';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NotificationModel } from '../_models/notification-model';
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -16,7 +18,7 @@ enum Types {
 
 @Injectable()
 export class FriendsService {
-  constructor(private http: HttpClient, public auth: AngularFireAuth) {}
+  constructor(private http: HttpClient, public auth: AngularFireAuth, private notificationService: NotificationsService) {}
   private apiServer = AppConfigService.settings.apiServer.metadata;
   private url = this.apiServer + 'friendsAPI/';
 
@@ -33,10 +35,12 @@ export class FriendsService {
   }
 
   getRelationshipByBothUID(relatingUID: string, relatedUID: string): Observable<RelationshipModel> {
-    let params = new HttpParams();
-    params = params.append('relationUser', relatingUID);
-    params = params.append('relatedUser', relatedUID);
-    return this.http.get<RelationshipModel>(this.url, {params});
+    return this.http.get<RelationshipModel>(this.url + relatingUID + ',' + relatedUID);
+  }
+
+  addFriend(relatedUID: string) {
+    const type = Types.Request;
+    this.updateOrCreateRelationshipByBothUID(this.auth.auth.currentUser.uid, relatedUID, type);
   }
 
   updateOrCreateRelationshipByBothUID(relatingUID: string, relatedUID: string, type: string) {
@@ -45,10 +49,12 @@ export class FriendsService {
     relationship.relatedUser = relatedUID;
     relationship.type = type;
 
-    return this.http.post<RelationshipModel>(this.url, relationship, httpOptions)
+    return this.http.post(this.url, relationship, httpOptions)
       .subscribe(
         data => {
-            console.log('POST Request is successful ', data);
+          if (relationship.type === Types.Friend || relationship.type === Types.Request) {
+            this.acceptUserRequest(relatedUID, relatingUID);
+          }
         },
         error => {
             console.log('Error', error);
@@ -56,8 +62,43 @@ export class FriendsService {
     );
   }
 
-  addFriend(relatedUID: string) {
-    const type = Types.Request;
-    this.updateOrCreateRelationshipByBothUID(this.auth.auth.currentUser.uid, relatedUID, type);
+  private acceptUserRequest(relatedUID: string, relatingUID: string) {
+    let related = false;
+    this.getRelationshipByBothUID(relatedUID, relatingUID).subscribe(relatedUserRelationship => {
+      related = true;
+      if (relatedUserRelationship.type === 'request') {
+        this.updateOrCreateRelationshipByBothUID(relatedUserRelationship.relationUser, relatedUserRelationship.relatedUser, Types.Friend);
+        this.sendAcceptedUserRequestNotification(relatedUID, relatingUID);
+      }
+    }, () => {
+      if (!related) {
+        this.sendUserRequestNotification(relatedUID, relatingUID);
+      }
+    });
   }
+
+  sendUserRequestNotification(relatedUID: string, relatingUID: string) {
+    const notification = new NotificationModel();
+    notification.type = 'friend-request';
+    notification.image = 'user.image';
+    notification.title = 'User sent you a friend request';
+    notification.body = 'User sent you a friend request';
+    notification.userID = relatedUID;
+    notification.sender = relatingUID;
+
+    this.notificationService.sendNotificationToUser(notification);
+  }
+
+  sendAcceptedUserRequestNotification(relatedUID: string, relatingUID: string) {
+    const notification = new NotificationModel();
+    notification.type = 'accepted';
+    notification.image = 'user.image';
+    notification.title = 'User is now your friend';
+    notification.body = 'User is now your friend';
+    notification.userID = relatedUID;
+    notification.sender = relatingUID;
+
+    this.notificationService.sendNotificationToUser(notification);
+  }
+
 }

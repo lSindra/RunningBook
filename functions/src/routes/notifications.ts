@@ -31,8 +31,41 @@ export class NotificationsAPI {
       }).catch(error => {
           console.log("Error getting document:", error);
       });
-    }
-  )}
+    })
+
+    this.notificationAPI.delete('/:uid', (req, res) => {
+      const notificationID = req.params['uid'];
+
+      notificationCollection.where("uid", "==", notificationID).get().then(function(snapshot) {
+        snapshot.forEach(function(doc) {
+          doc.ref.delete()
+          .catch(error => {
+            console.log("Error deleting document:", error);
+          });
+        });
+      }).catch(error => {
+          console.log("Error getting document:", error);
+      });
+    })
+
+    this.notificationAPI.post('/', (req, res) => {
+      const notification = req.body;
+
+      notificationCollection.add(notification)
+      .then(function(docRef) {
+        notification.uid = docRef.id;
+        notificationCollection.doc(docRef.id).set(notification).then(() => {
+          res.sendStatus(201);
+        })
+        .catch(function(error) {
+          console.error("Error updating document: ", error);
+      });
+      })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
+    })
+  }
 
   db;
   notificationAPI;

@@ -20,7 +20,7 @@ export class NotificationsComponent implements OnInit {
     this.initNotifications();
 
     setInterval(() => {
-      this.updateNotifications();
+      this.initNotifications();
     }, 10000);
   }
 
@@ -30,19 +30,6 @@ export class NotificationsComponent implements OnInit {
         this.notifications = notifications;
         this.setNewNotificationCount(notifications.length);
       }
-    });
-  }
-
-  updateNotifications() {
-    this.notificationsService.getMyNotifications().subscribe(notifications => {
-      notifications.forEach(notification => {
-        this.notifications.map(currentNotification => {
-          if (notification.uid !== currentNotification.uid) {
-            this.notifications.push(notification);
-            this.setNewNotificationCount(this.notifications.length);
-          }
-        });
-      });
     });
   }
 
@@ -64,6 +51,10 @@ export class NotificationsComponent implements OnInit {
   }
 
   dismissNotification(notificationUID) {
-    console.log(notificationUID);
+    this.notifications = this.notifications.filter(currentNotification => {
+      return notificationUID !== currentNotification.uid;
+    });
+    this.setNewNotificationCount(this.notifications.length);
+    this.notificationsService.dismisNotificationByUID(notificationUID);
   }
 }

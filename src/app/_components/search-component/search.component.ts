@@ -49,12 +49,16 @@ export class SearchComponent implements OnInit {
   }
 
   getUserRelation(uid: string): string {
-    const relation = this.relations.find(function(friend) {
-      return friend.relatedUser === '/user/' + uid;
-    });
+    if (this.relations) {
+      const relation = this.relations.find(function(friend) {
+        return friend.relatedUser === '/user/' + uid;
+      });
 
-    if (relation) {
-      return relation.type;
+      if (relation) {
+        return relation.type;
+      } else {
+        return;
+      }
     } else {
       return;
     }

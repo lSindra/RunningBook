@@ -22,7 +22,7 @@ export class Friends {
 
     //Get relations by user UID
     this.friendsAPI.get('/my-relations/:uid', (req, res) => {
-        const uid = '/user/' + req.params['uid'];
+        const uid = req.params['uid'];
 
         friendsCollection.where("relationUser", "==", uid).get().then(function(snapshot) {
             const friends = snapshot.docs.map(doc => {
@@ -53,7 +53,7 @@ export class Friends {
     });
 
     //Get relationship by both UID
-    this.friendsAPI.get('/', (req, res) => {
+    this.friendsAPI.get('/:relationUser,:relatedUser', (req, res) => {
         const relatingID = req.params['relationUser'];
         const relatedID = req.params['relatedUser'];
 
@@ -61,10 +61,12 @@ export class Friends {
         query = query.where("relatedUser", "==", relatedID);
 
         query.get().then(function(snapshot) {
-            const relation = snapshot.docs.map(doc => {
-                return doc.data();
-            });
+          if (snapshot.docs[0]) {
+            const relation = snapshot.docs[0].data();
             res.json(relation);
+          } else {
+            res.json([]);
+          }
         }).catch(function(error) {
             console.log("Error getting document:", error);
         });
@@ -73,31 +75,23 @@ export class Friends {
     //Update or Create relationship
     this.friendsAPI.post('/', (req, res) => {
       const relationship = req.body;
-      relationship.relationUser = '/user/' + relationship.relationUser;
-      relationship.relatedUser  = '/user/' + relationship.relatedUser;
 
       let query = friendsCollection.where("relationUser", "==", relationship.relationUser);
       query = query.where("relatedUser", "==", relationship.relatedUser);
-
       query.get().then(function(snapshot) {
         if (!Array.isArray(snapshot.docs) || !snapshot.docs.length) {
           friendsCollection.doc().create((relationship)).then(() => {
-            // AfterCreate relationship
-
-            res.sendStatus(201);
+            res.send(Promise.resolve(1));
           }).catch(function(error) {
               console.log("Error updating relationship: ", error);
           });
         } else {
           snapshot.docs.map(doc => {
-            const relationshipUID = doc.data().uid;
+            const relationshipUID = doc.id;
 
-            if (relationshipUID) {
+            if (relationshipUID && (doc.data().type !== 'friend' || relationship.type !== 'request')) {
               friendsCollection.doc(relationshipUID).set((relationship)).then(() => {
-              // AfterUpdate relationship
-
-
-                res.sendStatus(201);
+                res.send(Promise.resolve(1));
               }).catch(function(error) {
                   console.log("Error updating relationship: ", error);
               });

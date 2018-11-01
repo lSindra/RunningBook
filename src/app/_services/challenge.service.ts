@@ -16,7 +16,6 @@ export class ChallengeService {
   }
 
   getChallenges(): Observable<ChallengeModel[]> {
-    const url = this.apiServer + 'challengeAPI/';
     return this.http.get<ChallengeModel[]>(this.url);
   }
 }

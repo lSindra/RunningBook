@@ -22,7 +22,7 @@ export class Challenges {
         //Get all challenges
         this.challengeAPI.get('/', (req, res) => {
             challengeCollection.get().then(function(snapshot) {
-                let challenges = snapshot.docs.map(doc => {
+                const challenges = snapshot.docs.map(doc => {
                     return doc.data();
                 });
                 res.json(challenges);

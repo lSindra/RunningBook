@@ -1,6 +1,7 @@
-import * as functions from 'firebase-functions';
+import * as functions from 'firebase/functions';
 import * as express from 'express';
-import * as _cors from 'cors';
+import * as _cors from 'core-js';
+
 
 import { functionsConfig } from '../functions-config';
 

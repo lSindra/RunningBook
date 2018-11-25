@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA, APP_INITIALIZER } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import { NgModule, NO_ERRORS_SCHEMA, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {
   MatButtonModule,
   MatCardModule,
@@ -21,7 +22,8 @@ import {
   MatTooltipModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { ROUTES } from './app.routes';
@@ -38,6 +40,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AuthGuard } from './core/auth.guard';
 import { ProfilePageComponent } from './_components/profile-page/profile-page.component';
 import { ChallengePageComponent } from './_components/challenge-page/challenge-page.component';
+import { RunComponent } from './_components/run/run.component';
+import { FoodComponent } from './_components/food/food.component';
+import { PilatesComponent } from './_components/pilates/pilates.component';
+import { BntSaveComponent,MessageSave } from './_components/run/bnt-save/bnt-save.component';
+import { BodybuildingComponent } from './_components/bodybuilding/bodybuilding.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -48,9 +55,15 @@ export function initializeApp(appConfig: AppConfigService) {
   AppComponent,
   LoginComponent,
   HomeComponent,
-  NotFoundComponent,
+  NotFoundComponent,  
   ProfilePageComponent,
-  ChallengePageComponent
+  ChallengePageComponent,
+  RunComponent,
+  FoodComponent,
+  PilatesComponent,
+  BntSaveComponent,
+  MessageSave,
+  BodybuildingComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +79,7 @@ export function initializeApp(appConfig: AppConfigService) {
     MatDividerModule,
     MatChipsModule,
     MatTooltipModule,
+    MatGridListModule,
     MatDialogModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
@@ -75,6 +89,7 @@ export function initializeApp(appConfig: AppConfigService) {
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    MatExpansionModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,
@@ -82,7 +97,10 @@ export function initializeApp(appConfig: AppConfigService) {
     }),
     NgxAuthFirebaseUIModule.forRoot(environment.firebase),
   ],
-  schemas: [ NO_ERRORS_SCHEMA ],
+  entryComponents:[
+    MessageSave
+  ],
+  schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     AuthGuard,
     UserService,
@@ -93,5 +111,6 @@ export function initializeApp(appConfig: AppConfigService) {
          deps: [AppConfigService], multi: true }
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

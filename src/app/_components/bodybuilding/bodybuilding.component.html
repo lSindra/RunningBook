@@ -1,0 +1,33 @@
+<mat-card style="background-color:rgb(212, 192, 166)"><h2>{{title}}</h2></mat-card>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!--<mat-card class="painel">
+        <mat-card><label for="runChallenges" class="title">Run Challenges</label></mat-card>
+            <div id="runChallenges" class="row">
+                <div class="checkbox" class="col-sm-3" 
+                     formArrayName="runChallenges"
+                     *ngFor="let item of form.get('runChallenges').controls; let i = index">
+                         <label class="checkbox-inline">
+                           <mat-card class="celulas">
+                               <mat-checkbox class="example-margin" [formControlName]="i"> {{runChallenges[i]}} </mat-checkbox> 
+                            </mat-card>
+                         </label>
+                </div>
+             </div>
+    </mat-card>
+-->
+<mat-accordion multi="true">
+            <mat-expansion-panel formArrayName="bodyChallenges"
+            *ngFor="let item of form.get('bodyChallenges').controls; let i = index;
+            let item of form.get('bodyDescription').controls; let o = index;
+            let item of form.get('bodyNivel').controls; let j = index">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                            <span>{{bodyNivel[j]}} </span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-checkbox class="example-margin" [formControlName]="i"> {{bodyChallenges[i]}} </mat-checkbox> 
+              <mat-panel-description>{{bodyDescription[o]}}</mat-panel-description>
+            </mat-expansion-panel>
+</mat-accordion>
+    <app-bnt-save class="button"></app-bnt-save>
+</form>

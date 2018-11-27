@@ -1,0 +1,36 @@
+.painel{
+    width: 30%;
+    text-align:center;
+    margin-top: 10%;
+    margin-left: 35%;
+    background-color: rgba(3, 2, 2, 0.753);
+}
+.activities{
+    display: block;
+}
+.footer{
+    bottom: 0%;
+    position:absolute;
+    margin-left: 15%;
+}
+
+.title{
+    margin-bottom: 10%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    color:#800000;
+}
+.celulas{
+    background-color: rgba(3, 2, 2, 0.753);
+    color: antiquewhite;
+}
+.celulas:hover{
+    background-color:aliceblue;
+    color: rgb(49, 4, 92);
+    font-weight: bold;
+}
+.button{
+    width: 32.2%;
+    text-align:center;
+    margin-left: 2.2%;
+}

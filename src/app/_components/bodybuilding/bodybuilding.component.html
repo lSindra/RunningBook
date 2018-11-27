@@ -1,0 +1,18 @@
+<mat-card style="background-color:rgb(161, 191, 219)"><h2>{{title}}</h2></mat-card>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<mat-accordion multi="true">
+            <mat-expansion-panel formArrayName="bodyChallenges"
+            *ngFor="let item of form.get('bodyChallenges').controls; let i = index;
+            let item of form.get('bodyDescription').controls; let o = index;
+            let item of form.get('bodyNivel').controls; let j = index">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                            <span>{{bodyNivel[j]}} </span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-checkbox class="example-margin" [formControlName]="i"> {{bodyChallenges[i]}} </mat-checkbox> 
+              <mat-panel-description>{{bodyDescription[o]}}</mat-panel-description>
+            </mat-expansion-panel>
+</mat-accordion>
+    <app-bnt-save class="button"></app-bnt-save>
+</form>

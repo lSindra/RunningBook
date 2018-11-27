@@ -58,6 +58,11 @@ import { SearchComponent } from './_components/search-component/search.component
 import { SearchService } from './_services/search.service';
 import { UserToSearchResult } from './_models/converters/user-to-seach-result';
 import { NotificationsComponent } from './_components/notifications/notifications.component';
+import { RunComponent } from './_components/run/run.component';
+import { FoodComponent } from './_components/food/food.component';
+import { PilatesComponent } from './_components/pilates/pilates.component';
+import { BodybuildingComponent } from './_components/bodybuilding/bodybuilding.component';
+import { BntSaveComponent,MessageSave } from './_components/bnt-save/bnt-save.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -76,7 +81,13 @@ export function initializeApp(appConfig: AppConfigService) {
   ChallengesOverviewComponent,
   FeedComponent,
   SearchComponent,
-  NotificationsComponent
+  NotificationsComponent,
+  RunComponent,
+  FoodComponent,
+  PilatesComponent,
+  BodybuildingComponent,
+  BntSaveComponent,
+  MessageSave
   ],
   imports: [
     BrowserModule,
@@ -117,6 +128,8 @@ export function initializeApp(appConfig: AppConfigService) {
       preloadingStrategy: PreloadAllModules
     }),
     NgxAuthFirebaseUIModule.forRoot(environment.firebase),
+  ], entryComponents:[
+    MessageSave
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
